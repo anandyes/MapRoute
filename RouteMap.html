@@ -60,12 +60,13 @@
                 <option value="Nagarabhavi">Nagarabhavi</option>
                 <option value="Sunkadakatte">Sunkadakatte</option>
                 <option value="Laggere">Laggere</option>
-                <option value="Yeshwanthpur">Yeshwanthpur, FL</option>
+                <option value="Yeshwanthpur">Yeshwanthpur</option>
             </select>
-            <br>
-            <b>Pick-up points:</b> <br>
-            <i>Select multiple pick-up points using Ctrl+Click</i><br>
+            <br><br>
+            <b>Pick-up points:</b><br>
+            <i>Select multiple pick-up points using Ctrl+Click</i>
             <select multiple id="waypoints">
+                <option value="None">None</option>
                 <option value="Rajajinagar">Rajajinagar</option>
                 <option value="Srirampura">Srirampura</option>
                 <option value="Mantri Square">Mantri Square</option>
@@ -74,7 +75,7 @@
                 <option value="Jayanagar">Jayanagar</option>
                 <option value="Café Coffee Day - Silk Board, Bengaluru">CCD Silk Board</Option>
             </select>
-            <br>
+            <br><br>
             <b>Destination Address:</b>
             <select id="end">
                 <option value="Wipro Gate 11">Wipro Gate 11</option>
@@ -82,7 +83,7 @@
                 <option value="International Tech Park Bangalore">International Tech Park Bangalore</option>
             </select>
             <br>
-            <input type="submit" id="submit">
+            <input type="submit" id="submit" value="Find Route">
             <br>
             <input type="button" id="calculate-eta" value="Find ETA">
         </div>
@@ -115,6 +116,8 @@
             var checkboxArray = document.getElementById('waypoints');
             for (var i = 0; i < checkboxArray.length; i++) {
               if (checkboxArray.options[i].selected) {
+                  if(checkboxArray[i].value === 'None')
+                    break;
                 waypts.push({
                   location: checkboxArray[i].value,
                   stopover: true
