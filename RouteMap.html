@@ -131,6 +131,7 @@
             var startPoint = document.getElementById('start').value;
             var endPoint = document.getElementById('end').value;
 
+            // Calling Google Map Direction serivces API to find the optimized Driving route
             directionsService.route({
                 origin: startPoint,
                 destination: endPoint,
@@ -152,16 +153,11 @@
                         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
                         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
                         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-
-                        // Save the segment start and end address into array
-                        originsArray.push(route.legs[i].start_address);
-                        destinationsArray.push(route.legs[i].end_address);
                     }
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
             }); // directionsService.route
-
         }
 
         // This function is the event handler for the "Find ETA" button
@@ -197,7 +193,6 @@
                     var distance = element.distance.text;
                     var duration = element.duration.text;
                     summaryPanel.innerHTML += '<b>Distance:</b> '+ distance + '<br>' + '<b>ETA:</b>'+ duration + '<br>';
-                    //summaryPanel.innerHTML += '<b>ETA </b>from: ' + origins[0] + ' to :' + destinations[0] + ' is: ' + duration + ' covering a distance of: ' + distance + '<br>'; 
                 }
                 else{
                     window.alert('Distance Service failed due to ' + status);                
